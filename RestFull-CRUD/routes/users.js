@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
     
     // Query
     let sqlRequest = new sql.Request();  //Oggetto che serve a creare le query
-    sqlRequest.query('select * from persona', (err, result) => {
+    sqlRequest.query('select * from dbo.[cr-unit-attributes]', (err, result) => {
         if (err) console.log(err); // ... error checks
         res.send(result);  //Invio il risultato
     });
