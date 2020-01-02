@@ -26,7 +26,7 @@ router.get('/search/:name', function(req, res, next) {
     if(err) console.log(err);
     // Query
     let sqlRequest = new sql.Request();
-    sqlRequest.query(`select * from persona where FirstName = '${req.params.name}'`, (err, result) => {
+    sqlRequest.query(`select * from persona where Nome = '${req.params.name}'`, (err, result) => {
         // ... error checks
         if (err) console.log(err);
 
