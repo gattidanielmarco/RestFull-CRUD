@@ -4,7 +4,7 @@ const sql = require('mssql');
 const config = {
   user: '4DD_13',  //Vostro user name
   password: 'xxx123##', //Vostra password
-  server: "213.140.22.237\\sqlexpress",  //Stringa di connessione
+  server: "213.140.22.237",  //Stringa di connessione
   database: '4DD_13', //(Nome del DB)
 }
 /* GET users listing. */
@@ -19,6 +19,8 @@ router.get('/', function(req, res, next) {
         res.send(result);  //Invio il risultato
     });
   });
+  console.log(req.body);
+  res.send(req.body);
 });
 router.get('/search/:name', function(req, res, next) {
   sql.connect(config, err => {
