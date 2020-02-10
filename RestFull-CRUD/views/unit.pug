@@ -1,0 +1,16 @@
+extends layout
+block content
+  each arr in unita
+    img(src = `/images/${arr.Unit}.png`) 
+    h1 #{arr.Unit}
+    p #{arr.Cost}
+    p #{arr.Hit_Speed} 
+    p #{arr.Speed} 
+    p #{arr.Deploy_Time}
+    p #{arr.Range}  
+    p #{arr.Target} 
+    p #{arr.Count} 
+    p #{arr.Transport} 
+    p #{arr.Type} 
+    p #{arr.Rarity} 
+    
