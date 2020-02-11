@@ -1,5 +1,10 @@
 extends layout
 block content
+  ul
+    li
+     a(href="index") Nuova Unità
+    li
+     a(href="/") Elenco Unità
   each arr in unita
     img(src = `/images/${arr.Unit}.png`) 
     h1 #{arr.Unit}

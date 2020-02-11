@@ -42,6 +42,9 @@ renderizza = function(pagina, res, dati)
 }
 
 /* GET home page. */
+router.get('/index', function(req, res, next) {
+  res.render('index');
+});
 router.get('/', function(req, res, next) {
   let unita = "select * from dbo.[cr-unit-attributes]";
   executeQuery(res, unita, next, "unita");
