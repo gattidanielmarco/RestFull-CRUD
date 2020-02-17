@@ -11,7 +11,7 @@ const config = {
   server: "213.140.22.237",  //Stringa di connessione
   database: '4DD_13', //(Nome del DB)
 }
-let executeQuery = function (res, query, next, pagina) {
+let executeQuery = function (res, query, next, pagina, sendData) {
   sql.connect(config, function (err) {
     if (err) { //Display error page
       console.log("Error while connecting database :- " + err);
@@ -29,7 +29,7 @@ let executeQuery = function (res, query, next, pagina) {
     /*  res.render('unita',{unita : result.recordset}); //Il vettore con i dati è nel campo recordset (puoi loggare result per verificare)
       res.render('unit',{unita : result.recordset});
     */
-      renderizza(pagina,res, result.recordset)
+      if (sendData) renderizza(pagina,res, result.recordset)
       sql.close();
     });
 
@@ -47,13 +47,28 @@ router.get('/index', function(req, res, next) {
 });
 router.get('/', function(req, res, next) {
   let unita = "select * from dbo.[cr-unit-attributes]";
-  executeQuery(res, unita, next, "unita");
+  executeQuery(res, unita, next, "unita", true);
 });
 router.get('/unit/:nome', function(req, res, next) {
 
     let unita = `select * from dbo.[cr-unit-attributes] WHERE Unit = '${req.params.nome}'`;
-    executeQuery(res, unita, next, "unit");
+    executeQuery(res, unita, next, "unit", true);
   
 });
+
+router.post('/', function (req, res, next) {
+  // Add a new Unit  
+  console.log("ciao");
+  let unit = req.body;
+  if (!unit) {  //Qui dovremmo testare tutti i campi della richiesta
+    res.status(500).json({success: false, message:'Error while connecting database', error:err});
+    return;
+  }
+  let sqlInsert = `INSERT INTO dbo.[cr-unit-attributes] (Unit,Cost,Hit_Speed) 
+                     VALUES ('${unit.Unit}','${unit.Cost}','${unit.Hit_Speed}')`;
+  executeQuery(res, unita, next, "unit", false);
+  res.send("unit", unita: [unit])
+});
+
 
 module.exports = router;
