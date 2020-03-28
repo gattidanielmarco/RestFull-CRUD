@@ -51,7 +51,6 @@ router.get('/search/:name', function (req, res, next) {
 
 router.post('/', function (req, res, next) {
   // Add a new Unit  
-  console.log("ciao");
   let unit = req.body;
   if (!unit) {  //Qui dovremmo testare tutti i campi della richiesta
     res.status(500).json({success: false, message:'Error while connecting database', error:err});
