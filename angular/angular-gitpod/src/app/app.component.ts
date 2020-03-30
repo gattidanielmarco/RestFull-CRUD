@@ -17,7 +17,7 @@ export class AppComponent {
   constructor(private http: HttpClient) { } //Dependency injection
   getUnitList(): void {
     //Qui va sostituito l’url con quello delle vostre api
-    this.obsUnit = this.http.get<Unit[]>('https://3000-e7cb9e93-198e-4371-8fe7-faefb7130778.ws-eu01.gitpod.io/');
+    this.obsUnit = this.http.get<Unit[]>('https://3000-e7cb9e93-198e-4371-8fe7-faefb7130778.ws-eu01.gitpod.io/users');
     //Mi sottoscrivo all’observable e scrivo la arrow function che riceve i dati
     console.log(this.obsUnit.subscribe((data: Unit[]) => {this.data = data;}));
   }
