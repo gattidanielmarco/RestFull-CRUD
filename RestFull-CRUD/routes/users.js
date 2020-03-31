@@ -48,15 +48,15 @@ router.get('/search/:name', function (req, res, next) {
   executeQuery(res, sqlQuery, next);
 });
 
-router.post('/', function (req, res, next) {
+router.post('/add', function (req, res, next) {
   // Add a new Unit  
   let unit = req.body;
   if (!unit) {  //Qui dovremmo testare tutti i campi della richiesta
     res.status(500).json({success: false, message:'Error while connecting database', error:err});
     return;
   }
-  let sqlInsert = `INSERT INTO dbo.[cr-unit-attributes] (Unit,Cost,Hit_Speed) 
-                     VALUES ('${unit.Unit}','${unit.Cost}','${unit.Hit_Speed}')`;
+  let sqlInsert = `INSERT INTO dbo.[cr-unit-attributes] (Unit,Cost,Hit_Speed,Speed,Deploy_Time,Range,Target,Count,Transport,Type,Rarity) 
+                     VALUES ('${unit.Unit}','${unit.Cost}','${unit.Hit_Speed}','${unit.Speed}','${unit.Deploy_Time}','${unit.Range}','${unit.Target}','${unit.Count}','${unit.Transport}','${unit.Type}','${unit.Rarity}')`;
   executeQuery(res, sqlInsert, next);
   res.status(200).send("unit",{success:true, message: "unità inserita con successo", unita: [unit]})
 });

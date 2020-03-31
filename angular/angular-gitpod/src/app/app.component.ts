@@ -26,16 +26,17 @@ export class AppComponent {
     newData.Unit = newUnit.value;
     newData.Cost = newCost.value;
     newData.Hit_Speed = newHitSpeed.value;
-    newData.Speed=newSpeed.value;
-    newData.Deploy_Time=newDeployTime.value;
-    newData.Range=newRange.value;
-    newData.Target=newTarget.value;
-    newData.Count=newCount.value;
-    newData.Transport=newTransport.value;
-    newData.Type=newType.value;
-    newData.Rarity=newRarity.value;
+    newData.Speed = newSpeed.value;
+    newData.Deploy_Time = newDeployTime.value;
+    newData.Range = newRange.value;
+    newData.Target = newTarget.value;
+    newData.Count = newCount.value;
+    newData.Transport = newTransport.value;
+    newData.Type = newType.value;
+    newData.Rarity = newRarity.value;
     let headers =  {headers: new HttpHeaders().set('Content-Type', 'application/json')};
-    this.postObserver = this.http.post('https://3000-e7cb9e93-198e-4371-8fe7-faefb7130778.ws-eu01.gitpod.io/users/', JSON.stringify(newData),headers)
+    this.postObserver = this.http.post('https://3000-e7cb9e93-198e-4371-8fe7-faefb7130778.ws-eu01.gitpod.io/users/add', JSON.stringify(newData),headers)
+    this.postObserver.subscribe(data => this.postData = data);
     return false;
   }
 }
